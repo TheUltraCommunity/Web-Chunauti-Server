@@ -45,9 +45,9 @@ app.get("/api/v1/projects/getAll", async (req, res) => {
 
 app.get("/api/v1/projects/:userId", async (req, res) => {
   try {
-    const user = await User.findOne({ UID: req.params.userId });
+    const user = await User.findOne({ uid: req.params.userId });
     if (user) {
-      const project = await Project.findOne({ ID: user.selected_project });
+      const project = await Project.findOne({ id: user.selected_project });
       res.json(project);
     } else {
       res.status(404).json({ message: "User not found" });
@@ -62,7 +62,7 @@ app.get("/api/v1/projects/:userId", async (req, res) => {
 
 app.get("/api/v1/get/project/:projectId", async (req, res) => {
   try {
-    const project = await Project.findOne({ ID: req.params.projectId });
+    const project = await Project.findOne({ id: req.params.projectId });
     if (project) {
       res.json(project);
     } else {
